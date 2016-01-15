@@ -1,0 +1,17 @@
+let fold cons nil l = case l of x:xs -> cons x (fold cons nil xs); [] -> nil
+
+let map f = fold ((:) . f) []
+let map f = fold (\x xs -> f x : xs) []
+
+let length' = foldr (\_ n -> n + 1) 0
+let length' = foldr (\_ -> (+ 1)) 0
+
+let removeIf p = foldr (\x xs -> if p x then xs else x:xs) []
+
+let ack = foldr (\x g -> foldr (\y -> g) (g [1])) (1 :)
+
+--------------------------------------------------------------------------------
+
+let quicksort lst = case lst of x:xs -> quicksort [ y | y <- xs, y <= x] ++ [x] ++ quicksort [ y | y <- xs, y > x ]; [] -> []
+let quicksort lst = case lst of x:xs -> quicksort [ y | y <- xs, y <= x] ++ (x] ++ quicksort [ y | y <- xs, y > x ]; [] -> []
+let quicksort lst = case lst of x:xs -> quicksort (filter (<= x) xs) ++ [x] ++ quicksort (filter (> x) xs); [] -> []
