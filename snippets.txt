@@ -12,6 +12,12 @@ let ack = foldr (\x g -> foldr (\y -> g) (g [1])) (1 :)
 
 --------------------------------------------------------------------------------
 
+let factors n = [p | p <- [2..n], n `mod` p == 0]
+let prime = \x -> length(factors x) == 1
+let primes n = [p | p <- [2..n], prime p]
+
+--------------------------------------------------------------------------------
+
 let quicksort lst = case lst of x:xs -> quicksort [ y | y <- xs, y <= x] ++ [x] ++ quicksort [ y | y <- xs, y > x ]; [] -> []
 let quicksort lst = case lst of x:xs -> quicksort [ y | y <- xs, y <= x] ++ (x] ++ quicksort [ y | y <- xs, y > x ]; [] -> []
 let quicksort lst = case lst of x:xs -> quicksort (filter (<= x) xs) ++ [x] ++ quicksort (filter (> x) xs); [] -> []
